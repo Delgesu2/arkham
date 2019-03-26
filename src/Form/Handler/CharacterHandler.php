@@ -140,15 +140,12 @@ class CharacterHandler
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
 
+            /**
             $this->entityManager->persist($this->data);
+            $this->entityManager->flush();
+             * */
 
-            var_dump($this->data);
-            die();
-
-
-           // $this->entityManager->flush();
-
-            //$this->repository->save($data);
+            $this->repository->save($data);
 
 //            $session = new Session();
          //   $session->getFlashBag()->add('success', 'Votre personnage a été créé avec succès.');

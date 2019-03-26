@@ -26,9 +26,7 @@ class CharacterListener
      */
     public function prePersist(Character $character, LifecycleEventArgs $eventArgs): void
     {
-        $this->computePv($character);
-        $this->computeDamage($character);
-        $this->computePsy($character);
+        $this->compute($character);
     }
 
     /**
@@ -36,58 +34,25 @@ class CharacterListener
      *
      * @throws \Exception
      */
-    private function computePv(Character $character)
+    private function compute(Character $character)
     {
         switch ($character->getJob()) {
             case 1:
                 $character->setPv(random_int(20, 25));
-                break;
-            case 2:
-                $character->setPv(random_int(24, 30));
-                break;
-            case 3:
-                $character->setPv(random_int(15, 21));
-                break;
-        }
-    }
-
-    /**
-     * @param Character $character
-     *
-     * @throws \Exception
-     */
-    private function computeDamage(Character $character)
-    {
-        switch ($character->getJob()) {
-            case 1:
                 $character->setDamage(random_int(4, 6));
-                break;
-            case 2:
-                $character->setDamage(random_int(5, 8));
-                break;
-            case 3:
-                $character->setDamage(random_int(2, 5));
-                break;
-        }
-    }
-
-    /**
-     * @param Character $character
-     *
-     * @throws \Exception
-     */
-    private function computePsy(Character $character)
-    {
-        switch ($character->getJob()) {
-            case 1:
                 $character->setPsy(random_int(10, 15));
                 break;
             case 2:
+                $character->setPv(random_int(24, 30));
+                $character->setDamage(random_int(5, 8));
                 $character->setPsy(random_int(4, 10));
                 break;
             case 3:
+                $character->setPv(random_int(15, 21));
+                $character->setDamage(random_int(2, 5));
                 $character->setPsy(random_int(14, 20));
                 break;
         }
     }
+
 }

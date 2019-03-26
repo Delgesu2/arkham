@@ -10,26 +10,46 @@
 
     {{ form_start(form) }}
 
+    <div>
         {{ form_label(form.nom) }}
         {{ form_widget(form.nom) }}
-{#
-        {{ form_label(form.pv) }}
-        {{ form_widget(form.pv) }}
+    </div>
 
-        {{ form_label(form.damage) }}
-        {{ form_widget(form.damage) }}
-
-        {{ form_label(form.psy) }}
-        {{ form_widget(form.psy) }}
-#}
+    <div>
         {{ form_label(form.job) }}
         {{ form_widget(form.job) }}
+    </div>
+
+    <div id="explik"></div>
 
         {{ form_widget(form.submit) }}
 
     {{ form_end(form) }}
 
 {% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        document.getElementById("character_job").addEventListener("change", function() {
+
+            let x = document.getElementById("character_job").value;
+            let text;
+
+            switch (x) {
+                case "1":
+                    text = "L'inspecteur a des paramètres moyens dans tous les domaines."
+                    break;
+                case "2":
+                    text = "Le boxeur a une excellente constitution, fait beaucoup de dégats avec ses points mais possède une faible résistance psychique.";
+                    break;
+                case "3":
+                    text = "Le réanimateur a peu de points de vie, fait peu de dégâts mais encaisse bien les dégâts psychiques.";
+                    break;
+            }
+
+            document.getElementById("explik").innerText = text;
+
+        });
+    </script>
+{% endblock %}
 </body>
 </html>

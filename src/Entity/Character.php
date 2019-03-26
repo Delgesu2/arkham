@@ -111,20 +111,6 @@ class Character
      */
     public function setPv(int $pv): void
     {
-        /**
-        switch ($this->job) {
-            case 1:
-                $this->pv = random_int(20,25);
-                break;
-            case 2:
-                $this->pv = random_int(24, 30);
-                break;
-            case 3:
-                $this->pv = random_int(15, 21);
-                break;
-        }
-        **/
-
         $this->pv = $pv;
     }
 

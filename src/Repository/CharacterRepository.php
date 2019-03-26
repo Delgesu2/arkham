@@ -36,6 +36,11 @@ class CharacterRepository extends ServiceEntityRepository
     public function save($character)
     {
         $this->_em->persist($character);
+
+
+        var_dump($character);
+        die();
+
         $this->_em->flush();
     }
 }
