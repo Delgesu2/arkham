@@ -12,7 +12,7 @@
 
         {{ form_label(form.nom) }}
         {{ form_widget(form.nom) }}
-
+{#
         {{ form_label(form.pv) }}
         {{ form_widget(form.pv) }}
 
@@ -21,10 +21,13 @@
 
         {{ form_label(form.psy) }}
         {{ form_widget(form.psy) }}
+#}
+        {{ form_label(form.job) }}
+        {{ form_widget(form.job) }}
 
         {{ form_widget(form.submit) }}
 
-    {{ form_end(form, { 'render_rest': false }) }}
+    {{ form_end(form) }}
 
 {% endblock %}
 {% block javascripts %}{% endblock %}

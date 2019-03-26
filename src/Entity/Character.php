@@ -15,6 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\CharacterRepository")
+ * @ORM\EntityListeners({
+ *     "App\EntityListener\CharacterListener"
+ * })
  */
 class Character
 {
@@ -39,21 +42,29 @@ class Character
      *
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $pv = null;
+    private $pv;
 
     /**
      * @var int
      *
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $damage = null;
+    private $damage;
 
     /**
      * @var int
      *
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $psy = null;
+    private $psy;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $job;
+
 
     /**
      * @return int
@@ -100,6 +111,20 @@ class Character
      */
     public function setPv(int $pv): void
     {
+        /**
+        switch ($this->job) {
+            case 1:
+                $this->pv = random_int(20,25);
+                break;
+            case 2:
+                $this->pv = random_int(24, 30);
+                break;
+            case 3:
+                $this->pv = random_int(15, 21);
+                break;
+        }
+        **/
+
         $this->pv = $pv;
     }
 
@@ -125,6 +150,22 @@ class Character
     public function getPsy(): ?int
     {
         return $this->psy;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJob(): ?int
+    {
+        return $this->job;
+    }
+
+    /**
+     * @param int $job
+     */
+    public function setJob(int $job): void
+    {
+        $this->job = $job;
     }
 
     /**

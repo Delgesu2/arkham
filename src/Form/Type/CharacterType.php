@@ -10,6 +10,7 @@ namespace App\Form\Type;
 
 use App\Entity\Character;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,7 +33,7 @@ class CharacterType extends AbstractType
             ->add('nom', TextType::class, [
                 "label" => "Votre nom :"
             ])
-
+/**
             ->add('pv', NumberType::class, [
                 "label" => "Points de vie :"
             ])
@@ -44,6 +45,15 @@ class CharacterType extends AbstractType
             ->add('psy', NumberType::class, [
                 "label" => "Points de psy :"
                 ])
+**/
+            ->add('job', ChoiceType::class, [
+                "label" => "Choisissez un métier :",
+                "choices" => [
+                    "Inspecteur" => 1,
+                    "Boxeur"     => 2,
+                    "Réanimateur"=> 3
+                ]
+            ])
 
             ->add('submit', SubmitType::class);
 

@@ -9,6 +9,7 @@
 namespace App\Form\Handler;
 
 
+use App\Entity\Character;
 use App\Form\Type\CharacterType;
 use App\Repository\CharacterRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +17,6 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Doctrine\ORM\UnitOfWork;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -56,12 +56,25 @@ class CharacterHandler
      */
     private $entityManager;
 
-    public function __construct(CharacterRepository $repository, EntityManagerInterface $entityManager)
+    /**
+     * @var Character
+     */
+    private $character;
+
+    /**
+     * CharacterHandler constructor.
+     *
+     * @param CharacterRepository $repository
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(
+        CharacterRepository $repository,
+        EntityManagerInterface $entityManager
+    )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
     }
-
 
     /**
      * @Required
@@ -110,7 +123,6 @@ class CharacterHandler
        return $this->form->createView();
     }
 
-
     /**
      * Handle form
      *
@@ -126,12 +138,15 @@ class CharacterHandler
 
         $this->form->handleRequest($this->requestStack->getCurrentRequest());
 
-       // if ($this->form->isSubmitted() && $this->form->isValid()) {
+        if ($this->form->isSubmitted() && $this->form->isValid()) {
 
             $this->entityManager->persist($this->data);
-            $this->entityManager->flush();
+
+            var_dump($this->data);
+            die();
 
 
+           // $this->entityManager->flush();
 
             //$this->repository->save($data);
 
@@ -139,11 +154,9 @@ class CharacterHandler
          //   $session->getFlashBag()->add('success', 'Votre personnage a été créé avec succès.');
 
             return true;
-       // }
+       }
 
-        //return false;
-
-
+        return false;
 
     }
 }
