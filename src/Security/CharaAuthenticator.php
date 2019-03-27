@@ -11,6 +11,7 @@ namespace App\Security;
 use App\Entity\Chara;
 use App\Form\Model\Player;
 use App\Form\Type\CharacterType;
+use App\Repository\CharacterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -43,20 +44,28 @@ class CharaAuthenticator extends AbstractGuardAuthenticator
     private $router;
 
     /**
+     * @var CharacterRepository
+     */
+    private $repository;
+
+    /**
      * CharaAuthenticator constructor.
      *
      * @param FormFactoryInterface $formFactory
      * @param EntityManagerInterface $entityManager
      * @param RouterInterface $router
+     * @param CharacterRepository $repository
      */
     public function __construct(
-        FormFactoryInterface $formFactory,
-        EntityManagerInterface $entityManager,
-        RouterInterface $router
+        FormFactoryInterface    $formFactory,
+        EntityManagerInterface  $entityManager,
+        RouterInterface         $router,
+        CharacterRepository     $repository
     ) {
-        $this->formFactory = $formFactory;
-        $this->entityManager = $entityManager;
-        $this->router = $router;
+        $this->formFactory =    $formFactory;
+        $this->entityManager =  $entityManager;
+        $this->router =         $router;
+        $this->repository    =  $repository;
     }
 
     /**
@@ -92,9 +101,10 @@ class CharaAuthenticator extends AbstractGuardAuthenticator
     {
         $user = $this->entityManager->getRepository(Chara::class)->findOneByNom($credentials->getNom());
         if (null === $user) {
+          //  $this->repository->save($credentials);
             throw new CustomUserMessageAuthenticationException("Vos codes d'accès sont invalides.");
+            // condition inutile
         }
-
         return $user;
     }
 
@@ -111,21 +121,20 @@ class CharaAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
-        // TODO: Implement onAuthenticationSuccess() method.
-
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         // TODO: Implement onAuthenticationFailure() method.
 
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    {
+        return null;
+    }
+
 
 
     /**
@@ -133,9 +142,12 @@ class CharaAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        return new RedirectResponse($this->router->generate('story'));
+        //return new RedirectResponse($this->router->generate('home'));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function supportsRememberMe()
     {
         return false;
