@@ -6,7 +6,7 @@
  * Time: 13:59
  */
 
-namespace App\Form\Model;
+namespace App\Form\Model\Security;
 
 class Player
 {

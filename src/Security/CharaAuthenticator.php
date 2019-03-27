@@ -9,7 +9,6 @@
 namespace App\Security;
 
 use App\Entity\Chara;
-use App\Form\Model\Player;
 use App\Form\Type\CharacterType;
 use App\Repository\CharacterRepository;
 use Doctrine\ORM\EntityManagerInterface;
