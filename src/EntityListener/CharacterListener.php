@@ -8,7 +8,7 @@
 
 namespace App\EntityListener;
 
-use App\Entity\Character;
+use App\Entity\Chara;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
@@ -19,22 +19,22 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class CharacterListener
 {
     /**
-     * @param Character $character
+     * @param Chara $character
      * @param LifecycleEventArgs $eventArgs
      *
      * @throws \Exception
      */
-    public function prePersist(Character $character, LifecycleEventArgs $eventArgs): void
+    public function prePersist(Chara $character, LifecycleEventArgs $eventArgs): void
     {
         $this->compute($character);
     }
 
     /**
-     * @param Character $character
+     * @param Chara $character
      *
      * @throws \Exception
      */
-    private function compute(Character $character)
+    private function compute(Chara $character)
     {
         switch ($character->getJob()) {
             case 1:

@@ -8,14 +8,15 @@
 
 namespace App\Repository;
 
-use App\Entity\Character;
+use App\Entity\Chara;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class CharacterRepository
  *
- * @method Character|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Chara|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Chara[]    findAll()
  *
  */
 class CharacterRepository extends ServiceEntityRepository
@@ -25,22 +26,17 @@ class CharacterRepository extends ServiceEntityRepository
      */
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Character::class);
+        parent::__construct($registry, Chara::class);
     }
 
     /**
-     * Save Character
+     * Save Chara
      *
      * @param $character
      */
     public function save($character)
     {
         $this->_em->persist($character);
-
-
-        var_dump($character);
-        die();
-
         $this->_em->flush();
     }
 }

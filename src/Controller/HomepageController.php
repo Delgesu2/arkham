@@ -8,7 +8,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Character;
+use App\Entity\Chara;
 use App\Form\Handler\CharacterHandler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormInterface;
@@ -67,7 +67,7 @@ class HomepageController
         FormInterface $form = null
     )
     {
-        if($handler->handle(new Character())) {
+        if($handler->handle(new Chara())) {
 
             $redirectResponse = new RedirectResponse($this->urlGenerator->generate('story'));
             return $redirectResponse;

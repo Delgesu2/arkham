@@ -22,6 +22,7 @@ class Monster
      * @var int
      *
      * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -111,7 +112,7 @@ class Monster
         $this->damage = $damage;
     }
 
-    public function hit(Character $character)
+    public function hit(Chara $character)
     {
         // Player get damage
     }

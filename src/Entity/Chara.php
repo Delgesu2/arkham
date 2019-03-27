@@ -9,17 +9,22 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Class Character
+ * Class Chara
  * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\CharacterRepository")
+ * @UniqueEntity(
+ *     "nom",
+ *     message="Ce nom est déjà utilisé."
+ * )
  * @ORM\EntityListeners({
  *     "App\EntityListener\CharacterListener"
  * })
  */
-class Character
+class Chara
 {
     /**
      * @var int
@@ -40,28 +45,28 @@ class Character
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $pv;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $damage;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $psy;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="smallint")
      */
     private $job;
 

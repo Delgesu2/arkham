@@ -1,1 +1,40 @@
-STORY
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    Voici vos caractéristiques:
+
+    <ul>
+        <li>
+            votre nom: {{ perso.nom }}
+        </li>
+        <li>
+    vous êtes un
+        {% if perso.job == 1 %}
+        inspecteur.
+        {% elseif perso.job == 2 %}
+        boxeur.
+        {% elseif perso.job == 3 %}
+        réanimateur.
+        {% endif %}
+        </li>
+        <li>
+            points de vie: {{ perso.pv }}
+        </li>
+        <li>
+            points de dégâts: {{ perso.damage }}
+        </li>
+        <li>
+            points de psychologie: {{ perso.psy }}
+        </li>
+    </ul>
+
+
+    Voici la liste des monstres à combattre:
+    <ul>
+        {% for beast in monsters %}
+        <li>{{ beast.nom }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

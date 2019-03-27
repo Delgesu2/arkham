@@ -8,7 +8,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Character;
+use App\Entity\Chara;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -33,19 +33,7 @@ class CharacterType extends AbstractType
             ->add('nom', TextType::class, [
                 "label" => "Votre nom :"
             ])
-/**
-            ->add('pv', NumberType::class, [
-                "label" => "Points de vie :"
-            ])
 
-            ->add('damage', NumberType::class, [
-                "label" => "Points de dégats :"
-                ])
-
-            ->add('psy', NumberType::class, [
-                "label" => "Points de psy :"
-                ])
-**/
             ->add('job', ChoiceType::class, [
                 "label" => "Choisissez un métier :",
                 "choices" => [
@@ -65,7 +53,7 @@ class CharacterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Character::class
+            'data_class' => Chara::class
         ]);
     }
 

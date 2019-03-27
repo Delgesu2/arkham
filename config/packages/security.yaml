@@ -1,13 +1,22 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        #in_memory: { memory: ~ }
+        app_user_provider:
+            entity:
+                class: App\Entity\Chara
+                property: nom
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern: ^/
             anonymous: true
+            guard:
+                authenticators:
+                    - app.security.authenticator.user
+
 
             # activate different ways to authenticate
 

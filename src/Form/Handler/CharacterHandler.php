@@ -9,7 +9,7 @@
 namespace App\Form\Handler;
 
 
-use App\Entity\Character;
+use App\Entity\Chara;
 use App\Form\Type\CharacterType;
 use App\Repository\CharacterRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -57,7 +57,7 @@ class CharacterHandler
     private $entityManager;
 
     /**
-     * @var Character
+     * @var Chara
      */
     private $character;
 
@@ -140,15 +140,7 @@ class CharacterHandler
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
 
-            /**
-            $this->entityManager->persist($this->data);
-            $this->entityManager->flush();
-             * */
-
             $this->repository->save($data);
-
-//            $session = new Session();
-         //   $session->getFlashBag()->add('success', 'Votre personnage a été créé avec succès.');
 
             return true;
        }

@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Bienvenue à Arkham !{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
 {% block body %}
 
     {{ form_start(form) }}
@@ -27,6 +21,7 @@
     {{ form_end(form) }}
 
 {% endblock %}
+
 {% block javascripts %}
     <script type="text/javascript">
         document.getElementById("character_job").addEventListener("change", function() {
@@ -51,5 +46,4 @@
         });
     </script>
 {% endblock %}
-</body>
-</html>
+
