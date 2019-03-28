@@ -75,12 +75,9 @@ class StoryController
      */
     public function __invoke()
     {
-        //$perso = $this->characterRepository->find('7');
+        $perso = $this->characterRepository->find('7');
 
-        $perso = $this->security->getUser();
-
-        //var_dump($perso);
-        //die();
+        //$perso = $this->security->getUser();
 
         $monsters = $this->monsterRepository->findAll();
 
